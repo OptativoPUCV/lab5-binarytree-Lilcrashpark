@@ -185,7 +185,7 @@ Pair * nextTreeMap(TreeMap * tree)
             aux = aux->left;
         }
         tree->current = aux;
-        return aux->aux;
+        return aux->pair;
     }
     else
     {

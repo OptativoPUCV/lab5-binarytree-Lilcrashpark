@@ -6,27 +6,31 @@
 typedef struct TreeNode TreeNode;
 
 
-struct TreeNode {
+struct TreeNode 
+{
     Pair* pair;
     TreeNode * left;
     TreeNode * right;
     TreeNode * parent;
 };
 
-struct TreeMap {
+struct TreeMap 
+{
     TreeNode * root;
     TreeNode * current;
     int (*lower_than) (void* key1, void* key2);
 };
 
-int is_equal(TreeMap* tree, void* key1, void* key2){
+int is_equal(TreeMap* tree, void* key1, void* key2)
+{
     if(tree->lower_than(key1,key2)==0 &&  
         tree->lower_than(key2,key1)==0) return 1;
     else return 0;
 }
 
 
-TreeNode * createTreeNode(void* key, void * value) {
+TreeNode * createTreeNode(void* key, void * value)
+{
     TreeNode * new = (TreeNode *)malloc(sizeof(TreeNode));
     if (new == NULL) return NULL;
     new->pair = (Pair *)malloc(sizeof(Pair));
@@ -36,10 +40,13 @@ TreeNode * createTreeNode(void* key, void * value) {
     return new;
 }
 
-TreeMap * createTreeMap(int (*lower_than) (void* key1, void* key2)) {
-
-    //new->lower_than = lower_than;
-    return NULL;
+TreeMap * createTreeMap(int (*lower_than) (void* key1, void* key2)) 
+{
+    TreeMap * new = (TreeMap *)malloc(sizeof(TreeMap));
+    new->lower_than = lower_than;
+    new->root = NULL;
+    new->current = NULL;
+    return new;
 }
 
 
